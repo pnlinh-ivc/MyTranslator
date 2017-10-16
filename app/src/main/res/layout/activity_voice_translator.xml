@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_text_translator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ndanh.mytranslator.screen.voice.VoiceActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/layout_padding">
+
+        <TextView
+            android:id="@+id/text_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="24dp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingRight="@dimen/layout_padding">
+
+        <TextView
+            android:id="@+id/edt_translate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="24dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/micro_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_voice">
+
+            <ToggleButton
+                android:id="@+id/micro_action"
+                android:layout_width="@dimen/normal_icon_width"
+                android:layout_height="@dimen/normal_icon_height"
+                android:background="@drawable/voice"
+                android:padding="@dimen/increase_area_clickable"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:text=""
+                android:textOff=""
+                android:textOn=""/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/action_choose_source"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextWhite"/>
+
+        <ImageView
+            android:id="@+id/btn_swap_language"
+            android:layout_width="@dimen/normal_icon_width"
+            android:layout_height="@dimen/normal_icon_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/increase_area_clickable"
+            android:src="@drawable/two_way_arrow"/>
+
+        <Button
+            android:id="@+id/action_choose_dest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextWhite"/>
+    </LinearLayout>
+
+    <include layout="@layout/navigation_bar"/>
+
+</LinearLayout>

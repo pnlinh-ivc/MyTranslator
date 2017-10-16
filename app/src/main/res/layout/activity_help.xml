@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/activity_history"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              tools:context="com.ndanh.mytranslator.screen.help.HelpActivity"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/header_privacy_page"
+        android:background="@color/colorPrimaryLight">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <ImageView
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fitsSystemWindows="true"
+                android:id="@+id/action_back"
+                android:layout_width="@dimen/normal_icon_width"
+                android:layout_height="@dimen/normal_icon_height"
+                android:padding="@dimen/increase_area_clickable"
+                android:scaleY="0.7"
+                android:scaleX="0.7"
+                android:src="@drawable/back_page"/>
+        </LinearLayout>
+        <TextView
+            android:text="Help"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+    </LinearLayout>
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
+</LinearLayout>

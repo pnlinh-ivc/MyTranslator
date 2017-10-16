@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3A98BC</color>
+    <color name="colorPrimaryDark">#3A98BC</color>
+    <color name="colorPrimaryLight">#3A98BC</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorDivider">#4fffffff</color>
+    <color name="colorDividerLight">#F4F5F6</color>
+    <!-- Flat UI color -->
+    <color name="asbestos">#7f8c8d</color>
+    <!-- Flat UI color -->
+
+
+    <color name="lightBlue_4">#4FC3F7</color>
+
+    <color name="colorTextWhite">#FFFFFF</color>
+
+    <color name="colorBGNavigatorBar">#155770</color>
+    <color name="white">#FFFFFF</color>
+
+
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

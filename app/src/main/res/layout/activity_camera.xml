@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/panel_navigation">
+
+        <LinearLayout
+            android:id="@+id/preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/preview_mask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panel_change_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/action_choose_source"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"/>
+
+            <ImageView
+                android:id="@+id/btn_swap_language"
+                android:layout_width="@dimen/normal_icon_width"
+                android:layout_height="@dimen/normal_icon_height"
+                android:padding="@dimen/increase_area_clickable"
+                android:src="@drawable/two_way_arrow"/>
+
+            <Button
+                android:id="@+id/action_choose_dest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="135dp"
+            android:layout_height="240dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/panel_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/navigation_bar"/>
+    </LinearLayout>
+</RelativeLayout>

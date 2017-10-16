@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ndanh.mytranslator.ui.MyLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_text_translator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.ndanh.mytranslator.screen.text.TextActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <EditText
+            android:id="@+id/edt_translate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_top"
+            android:hint="@string/start_typing"
+            android:maxLines="3"
+            android:textColor="@color/colorTextWhite"
+            android:textColorHint="@color/colorDivider"/>
+
+        <ImageView
+            android:id="@+id/iv_clear_text"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="5dp"
+            android:src="@drawable/x_mark"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_translate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/white_border_button_bg"
+        android:text="@string/action_translate"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextWhite"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingRight="@dimen/layout_padding">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="24dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/action_keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_voice">
+
+            <ImageView
+                android:layout_width="@dimen/normal_icon_width"
+                android:layout_height="@dimen/normal_icon_height"
+                android:padding="8dp"
+                app:srcCompat="@drawable/ic_keyboard_white"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/action_choose_source"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextWhite"/>
+
+        <ImageView
+            android:id="@+id/btn_swap_language"
+            android:layout_width="@dimen/normal_icon_width"
+            android:layout_height="@dimen/normal_icon_height"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/increase_area_clickable"
+            app:srcCompat="@drawable/ic_swap_white"/>
+
+        <Button
+            android:id="@+id/action_choose_dest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextWhite"/>
+    </LinearLayout>
+
+    <include layout="@layout/navigation_bar"/>
+</com.ndanh.mytranslator.ui.MyLinearLayout>
+
