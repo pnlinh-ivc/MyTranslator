@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.ndanh.mytranslator.R;
@@ -27,8 +28,7 @@ import butterknife.OnClick;
 public class SettingActivity extends PermissionActivity implements SettingAdapter.OnItemClickListener {
     @Inject
     SharedPreferences sharedPreferences;
-
-    @BindView(R.id.lst_settings)
+    @BindView(R.id.action_about)
     ListView lstSetting;
     private SettingAdapter adapter;
 
@@ -39,7 +39,6 @@ public class SettingActivity extends PermissionActivity implements SettingAdapte
         ButterKnife.bind(this);
         this.adapter = new SettingAdapter(getApplicationContext(), getListSetting(), this);
         lstSetting.setAdapter(adapter);
-
     }
 
     @Override
@@ -65,11 +64,11 @@ public class SettingActivity extends PermissionActivity implements SettingAdapte
 
     private List<Setting> getListSetting() {
         List<Setting> lstSetting = new ArrayList<>();
-        Setting setting = new Setting(R.drawable.camera, R.string.setting_camera_action, R.drawable.checked, Setting.getScreenMode(sharedPreferences));
+        Setting setting = new Setting(R.drawable.ic_setting_camera, R.string.setting_camera_action, R.drawable.checked, Setting.getScreenMode(sharedPreferences));
         lstSetting.add(setting);
-        setting = new Setting(R.drawable.keyboard, R.string.setting_keyboard_action, R.drawable.checked, Setting.getScreenMode(sharedPreferences));
+        setting = new Setting(R.drawable.ic_setting_keyboard, R.string.setting_keyboard_action, R.drawable.checked, Setting.getScreenMode(sharedPreferences));
         lstSetting.add(setting);
-        setting = new Setting(R.drawable.voice, R.string.setting_voice_action, R.drawable.checked, Setting.getScreenMode(sharedPreferences));
+        setting = new Setting(R.drawable.ic_setting_voice, R.string.setting_voice_action, R.drawable.checked, Setting.getScreenMode(sharedPreferences));
         lstSetting.add(setting);
         return lstSetting;
     }

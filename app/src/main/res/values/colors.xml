@@ -6,7 +6,7 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
-    <color name="colorDivider">#4fffffff</color>
+    <color name="colorDivider">#3c000000</color>
     <color name="colorDividerLight">#F4F5F6</color>
     <!-- Flat UI color -->
     <color name="asbestos">#7f8c8d</color>

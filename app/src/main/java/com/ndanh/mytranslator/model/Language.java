@@ -15,18 +15,20 @@ import java.util.List;
  */
 
 public enum Language {
-    ENGLISH("English", "eng", "en_US"),
-    JAPANESE("Japanese", "jpn", "ja_JP"),
-    VIETNAMESE("Vietnamese", "vie", "vi_VN");
+    ENGLISH("English", "eng", "en_US", R.drawable.ic_flag_usa),
+    JAPANESE("Japanese", "jpn", "ja_JP", R.drawable.ic_flag_japan),
+    VIETNAMESE("Vietnamese", "vie", "vi_VN", R.drawable.ic_flag_vietnam);
 
     String normalName;
     String shortName;
     String locateName;
+    int resId;
 
-    Language(String normalName, String shortName, String locateName) {
+    Language(String normalName, String shortName, String locateName, int resId) {
         this.normalName = normalName;
         this.shortName = shortName;
         this.locateName = locateName;
+        this.resId = resId;
     }
 
     public String getNormalName() {

@@ -32,5 +32,9 @@
     <string name="setting_message_confirm_delete_history">Do you want delete history ?</string>
     <string name="history_message_confirm_delete_history">Do you want delete these records ?</string>
     <string name="setting_message_confirm_change_start_mode">Do you want change start screen?</string>
+    <string name="text_display">Display</string>
+    <string name="text_translate">Translate</string>
+    <string name="text_display_language">Display language</string>
+    <string name="text_start_mode">Start mode</string>
 
 </resources>

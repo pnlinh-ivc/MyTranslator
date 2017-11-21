@@ -52,13 +52,13 @@ public class SettingAdapter extends BaseAdapter {
             ViewHolder viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             convertView = inflater.inflate(R.layout.setting_item, parent, false);
-            viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.setting_icon);
-            viewHolder.tvSetting = (TextView) convertView.findViewById(R.id.setting_text);
-            viewHolder.ivSelected = (ImageView) convertView.findViewById(R.id.setting_checkbox);
+            viewHolder.ivIcon = convertView.findViewById(R.id.setting_icon);
+            viewHolder.tvSetting = convertView.findViewById(R.id.setting_text);
+            viewHolder.ivSelected = convertView.findViewById(R.id.setting_checkbox);
             convertView.setTag(viewHolder);
         }
 
-        ViewHolder viewHolder = ((ViewHolder) convertView.getTag());
+        ViewHolder viewHolder = (ViewHolder) convertView.getTag();
 
         viewHolder.tvSetting.setText(context.getString(lstSetting.get(position).getTextSetting()));
         viewHolder.ivIcon.setImageResource(lstSetting.get(position).getIconSetting());
