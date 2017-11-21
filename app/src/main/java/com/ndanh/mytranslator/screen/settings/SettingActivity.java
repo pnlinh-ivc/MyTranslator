@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.ndanh.mytranslator.R;
@@ -12,6 +13,7 @@ import com.ndanh.mytranslator.adapter.SettingAdapter;
 import com.ndanh.mytranslator.app.Config;
 import com.ndanh.mytranslator.app.TranslateApplication;
 import com.ndanh.mytranslator.base.PermissionActivity;
+import com.ndanh.mytranslator.model.Language;
 import com.ndanh.mytranslator.model.Setting;
 import com.ndanh.mytranslator.util.SimpleSQLiteOpenHelper;
 import com.ndanh.mytranslator.util.DialogHelper;
@@ -26,11 +28,19 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SettingActivity extends PermissionActivity implements SettingAdapter.OnItemClickListener {
+    private static final String PREF_DISPLAY_LANG = "display_lang";
+    private static final String PREF_TRANSLATE_LANG = "translate_lang";
     @Inject
     SharedPreferences sharedPreferences;
     @BindView(R.id.action_about)
     ListView lstSetting;
+    @BindView(R.id.iv_flag_display)
+    ImageView ivFlagDisplay;
+    @BindView(R.id.iv_flag_translate)
+    ImageView ivFlagTranslate;
+
     private SettingAdapter adapter;
+    private Language mDisplayLang, mTranslateLang;
 
     @Override
     protected void initView() {
@@ -39,6 +49,14 @@ public class SettingActivity extends PermissionActivity implements SettingAdapte
         ButterKnife.bind(this);
         this.adapter = new SettingAdapter(getApplicationContext(), getListSetting(), this);
         lstSetting.setAdapter(adapter);
+        initData();
+    }
+
+    private void initData() {
+        mDisplayLang = Language.fromShort(sharedPreferences.getString(PREF_DISPLAY_LANG, "eng"));
+        mTranslateLang = Language.fromShort(sharedPreferences.getString(PREF_DISPLAY_LANG, "eng"));
+        ivFlagDisplay.setImageResource(mDisplayLang.getResId());
+        ivFlagTranslate.setImageResource(mTranslateLang.getResId());
     }
 
     @Override

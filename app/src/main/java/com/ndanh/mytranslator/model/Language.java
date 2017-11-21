@@ -31,6 +31,10 @@ public enum Language {
         this.resId = resId;
     }
 
+    public int getResId() {
+        return resId;
+    }
+
     public String getNormalName() {
         return normalName;
     }

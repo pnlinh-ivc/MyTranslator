@@ -1,16 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MyTranslator</string>
+
     <string name="action_translate">Translate</string>
-    <string name="nav_settings">Settings</string>
-    <string name="nav_history">History</string>
-    <string name="nav_help">Help</string>
-    <string name="nav_about">About</string>
+    <string name="nav_settings">Cài đặt</string>
+    <string name="nav_history">Lịch sử</string>
+    <string name="nav_help">Trợ giúp</string>
+    <string name="nav_about">Giới thiệu</string>
     <string name="start_typing">Start typing...</string>
-    <string name="setting_clearhistory_action">Clear History</string>
+
+    <string name="setting_clearhistory_action">Xóa lịch sử</string>
     <string name="setting_camera_action">Camera</string>
-    <string name="setting_keyboard_action">Keyboard</string>
+    <string name="setting_keyboard_action">Bàn phím</string>
     <string name="setting_voice_action">Voice</string>
-    <string name="setting_startmode_title">Start Mode</string>
+    <string name="setting_startmode_title">Chế độ bắt đầu</string>
     <string name="setting_header">Settings</string>
+    <string name="voice_error_audio">Audio recording error</string>
+    <string name="voice_error_client">Client side error</string>
+    <string name="voice_error_insufficient_permissions">Insufficient permissions</string>
+    <string name="voice_error_network">Network error</string>
+    <string name="voice_error_network_timeout">Network timeout</string>
+    <string name="voice_error_no_match">No match</string>
+    <string name="voice_error_recognizer_busy">RecognitionService busy</string>
+    <string name="voice_error_server">error from server</string>
+    <string name="voice_error_speech_timeout">No speech input</string>
+    <string name="voice_error_default">Didn\'t understand, please try again.</string>
+    <string name="dialog_confirm_title">Xác nhận</string>
+    <string name="dialog_action_accept_title">Yes</string>
+    <string name="dialog_action_dimiss_title">No</string>
+    <string name="dialog_alert_title">Alert</string>
+    <string name="dialog_action_ok_title">OK</string>
+    <string name="setting_message_confirm_delete_history">Do you want delete history ?</string>
+    <string name="history_message_confirm_delete_history">Do you want delete these records ?</string>
+    <string name="setting_message_confirm_change_start_mode">Do you want change start screen?</string>
+    <string name="text_display">Hiển thị</string>
+    <string name="text_translate">dịch</string>
+    <string name="text_display_language">Ngôn ngữ hiển thị</string>
+    <string name="text_start_mode">Chế độ bắt đầu</string>
+
 </resources>
