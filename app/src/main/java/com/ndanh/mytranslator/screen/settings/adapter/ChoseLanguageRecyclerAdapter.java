@@ -21,6 +21,7 @@ public abstract class ChoseLanguageRecyclerAdapter extends RecyclerView.Adapter<
 
     public ChoseLanguageRecyclerAdapter(Language language) {
         mLanguage = language;
+        setHasStableIds(true);
     }
 
     private Language mLanguage;
@@ -56,6 +57,15 @@ public abstract class ChoseLanguageRecyclerAdapter extends RecyclerView.Adapter<
         return Language.getAll().size();
     }
 
+    public void updateLanguage(Language language) {
+        mLanguage = language;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return Language.getAll().get(position).hashCode();
+    }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_flag)

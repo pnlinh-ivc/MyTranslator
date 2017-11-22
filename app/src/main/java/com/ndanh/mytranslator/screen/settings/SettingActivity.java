@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.ndanh.mytranslator.base.PermissionActivity;
 import com.ndanh.mytranslator.model.Language;
 import com.ndanh.mytranslator.model.Setting;
 import com.ndanh.mytranslator.screen.settings.view.ChoseLanguageDialog;
+import com.ndanh.mytranslator.screen.settings.view.ChoseLanguageDialog.Callback;
 import com.ndanh.mytranslator.screen.settings.view.CustomDialog;
 import com.ndanh.mytranslator.util.DialogHelper;
 import com.ndanh.mytranslator.util.SimpleSQLiteOpenHelper;
@@ -33,6 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SettingActivity extends PermissionActivity {
+    private static final String TAG = SettingActivity.class.getSimpleName();
     private static final String PREF_DISPLAY_LANG = "display_lang";
     private static final String PREF_TRANSLATE_LANG = "translate_lang";
     @Inject
@@ -49,6 +52,7 @@ public class SettingActivity extends PermissionActivity {
     LinearLayout llLanguageTranslate;
 
     private List<Setting> mListSetting;
+    private Callback mDisplayCallback, mTranslateCallback;
 
 
     private SettingAdapter adapter;
@@ -125,7 +129,6 @@ public class SettingActivity extends PermissionActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
 
@@ -133,13 +136,22 @@ public class SettingActivity extends PermissionActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_language_display:
+
                 // ChoseLanguageDialog.getInstance(mDisplayLang).show(getSupportFragmentManager(), "");
                 CustomDialog customDialog = new CustomDialog(this, R.style.AppCompatAlertDialogStyle);
 
                 customDialog.show();
                 break;
             case R.id.ll_language_translate:
-                ChoseLanguageDialog.getInstance(mTranslateLang).show(getSupportFragmentManager(), "");
+                if (mTranslateCallback == null)
+                    mTranslateCallback = new Callback() {
+                        @Override
+                        public void onChange(Language language) {
+                            Log.e(TAG, String.format("onChange: %s", language.toString()));
+                        }
+                    };
+                ChoseLanguageDialog.getInstance(mTranslateLang, mTranslateCallback
+                ).show(getSupportFragmentManager(), "");
                 break;
         }
     }
