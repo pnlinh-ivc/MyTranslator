@@ -31,7 +31,7 @@
     <string name="dialog_action_ok_title">OK</string>
     <string name="setting_message_confirm_delete_history">Do you want delete history ?</string>
     <string name="history_message_confirm_delete_history">Do you want delete these records ?</string>
-    <string name="setting_message_confirm_change_start_mode">Do you want change start screen?</string>
+    <string name="title_confirm_change_setting_mode">Do you want change start screen?</string>
     <string name="text_display">Hiển thị</string>
     <string name="text_translate">dịch</string>
     <string name="text_display_language">Ngôn ngữ hiển thị</string>

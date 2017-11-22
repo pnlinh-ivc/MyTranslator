@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3A98BC</color>
-    <color name="colorPrimaryDark">#3A98BC</color>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorPrimaryLight">#3A98BC</color>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorAccent">#FF6D00</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDivider">#3c000000</color>
@@ -19,6 +19,7 @@
 
     <color name="colorBGNavigatorBar">#155770</color>
     <color name="white">#FFFFFF</color>
+    <color name="grey_500">#9E9E9E</color>
 
 
 </resources>

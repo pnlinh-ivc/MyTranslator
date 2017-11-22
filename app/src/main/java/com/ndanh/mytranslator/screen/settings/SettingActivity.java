@@ -4,19 +4,24 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.EditText;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.ndanh.mytranslator.R;
 import com.ndanh.mytranslator.adapter.SettingAdapter;
-import com.ndanh.mytranslator.app.Config;
 import com.ndanh.mytranslator.app.TranslateApplication;
 import com.ndanh.mytranslator.base.PermissionActivity;
 import com.ndanh.mytranslator.model.Language;
 import com.ndanh.mytranslator.model.Setting;
-import com.ndanh.mytranslator.util.SimpleSQLiteOpenHelper;
+import com.ndanh.mytranslator.screen.settings.view.ChoseLanguageDialog;
+import com.ndanh.mytranslator.screen.settings.view.CustomDialog;
 import com.ndanh.mytranslator.util.DialogHelper;
+import com.ndanh.mytranslator.util.SimpleSQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +32,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SettingActivity extends PermissionActivity implements SettingAdapter.OnItemClickListener {
+public class SettingActivity extends PermissionActivity {
     private static final String PREF_DISPLAY_LANG = "display_lang";
     private static final String PREF_TRANSLATE_LANG = "translate_lang";
     @Inject
     SharedPreferences sharedPreferences;
-    @BindView(R.id.action_about)
+    @BindView(R.id.lst_settings)
     ListView lstSetting;
     @BindView(R.id.iv_flag_display)
     ImageView ivFlagDisplay;
     @BindView(R.id.iv_flag_translate)
     ImageView ivFlagTranslate;
+    @BindView(R.id.ll_language_display)
+    LinearLayout llLanguageDisplay;
+    @BindView(R.id.ll_language_translate)
+    LinearLayout llLanguageTranslate;
+
+    private List<Setting> mListSetting;
+
 
     private SettingAdapter adapter;
     private Language mDisplayLang, mTranslateLang;
@@ -47,7 +59,8 @@ public class SettingActivity extends PermissionActivity implements SettingAdapte
         setContentView(R.layout.activity_setting);
         ((TranslateApplication) getApplication()).getAppComponent().inject(this);
         ButterKnife.bind(this);
-        this.adapter = new SettingAdapter(getApplicationContext(), getListSetting(), this);
+        mListSetting = getListSetting();
+        this.adapter = new SettingAdapter(this, R.layout.setting_item, mListSetting);
         lstSetting.setAdapter(adapter);
         initData();
     }
@@ -57,6 +70,18 @@ public class SettingActivity extends PermissionActivity implements SettingAdapte
         mTranslateLang = Language.fromShort(sharedPreferences.getString(PREF_DISPLAY_LANG, "eng"));
         ivFlagDisplay.setImageResource(mDisplayLang.getResId());
         ivFlagTranslate.setImageResource(mTranslateLang.getResId());
+
+        lstSetting.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                DialogHelper.confirm(SettingActivity.this, getString(R.string.title_confirm_change_setting_mode), new DialogHelper.OnDialogListener() {
+                    @Override
+                    public void onAccept() {
+                        adapter.changeStartMode(mListSetting.get(position));
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -91,18 +116,31 @@ public class SettingActivity extends PermissionActivity implements SettingAdapte
         return lstSetting;
     }
 
-    @Override
-    public void onSelect(final Setting setting) {
-        DialogHelper.confirm(SettingActivity.this, getString(R.string.setting_message_confirm_change_start_mode), new DialogHelper.OnDialogListener() {
-            @Override
-            public void onAccept() {
-                adapter.changeStartMode(setting);
-            }
-        });
-    }
 
     public static void start(Context context) {
         Intent starter = new Intent(context, SettingActivity.class);
         context.startActivity(starter);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick({R.id.ll_language_display, R.id.ll_language_translate})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_language_display:
+                // ChoseLanguageDialog.getInstance(mDisplayLang).show(getSupportFragmentManager(), "");
+                CustomDialog customDialog = new CustomDialog(this, R.style.AppCompatAlertDialogStyle);
+
+                customDialog.show();
+                break;
+            case R.id.ll_language_translate:
+                ChoseLanguageDialog.getInstance(mTranslateLang).show(getSupportFragmentManager(), "");
+                break;
+        }
     }
 }

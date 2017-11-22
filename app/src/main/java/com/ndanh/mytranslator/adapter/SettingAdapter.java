@@ -1,9 +1,11 @@
 package com.ndanh.mytranslator.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,18 +20,21 @@ import java.util.List;
  * Created by ndanh on 5/15/2017.
  */
 
-public class SettingAdapter extends BaseAdapter {
+public class SettingAdapter extends ArrayAdapter<Setting> {
 
-    private final Context context;
+
     private List<Setting> lstSetting;
-    private OnItemClickListener itemClickListener;
+    private Context mContext;
+    private int resId;
     private int mSelectedItem;
 
-    public SettingAdapter(final Context context, List<Setting> lstSetting, OnItemClickListener itemClickListener) {
-        this.context = context;
-        this.lstSetting = lstSetting;
-        this.itemClickListener = itemClickListener;
+    public SettingAdapter(@NonNull Context context, int resource, @NonNull List<Setting> objects) {
+        super(context, resource, objects);
+        mContext = context;
+        lstSetting = objects;
+        resId = resource;
     }
+
 
     @Override
     public int getCount() {
@@ -51,7 +56,7 @@ public class SettingAdapter extends BaseAdapter {
         if (convertView == null) {
             ViewHolder viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            convertView = inflater.inflate(R.layout.setting_item, parent, false);
+            convertView = inflater.inflate(resId, parent, false);
             viewHolder.ivIcon = convertView.findViewById(R.id.setting_icon);
             viewHolder.tvSetting = convertView.findViewById(R.id.setting_text);
             viewHolder.ivSelected = convertView.findViewById(R.id.setting_checkbox);
@@ -60,7 +65,7 @@ public class SettingAdapter extends BaseAdapter {
 
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
 
-        viewHolder.tvSetting.setText(context.getString(lstSetting.get(position).getTextSetting()));
+        viewHolder.tvSetting.setText(mContext.getString(lstSetting.get(position).getTextSetting()));
         viewHolder.ivIcon.setImageResource(lstSetting.get(position).getIconSetting());
         viewHolder.ivSelected.setImageResource(lstSetting.get(position).getCheckBoxSetting());
         if (lstSetting.get(position).isSet()) {
@@ -69,22 +74,12 @@ public class SettingAdapter extends BaseAdapter {
             viewHolder.ivSelected.setVisibility(View.GONE);
         }
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClickListener.onSelect(lstSetting.get(position));
-            }
-        });
         return convertView;
     }
 
 
-    public interface OnItemClickListener {
-        void onSelect(Setting setting);
-    }
-
     public void changeStartMode(Setting setting) {
-        Setting.initSetting(context);
+        Setting.initSetting(mContext);
         for (Setting item : lstSetting) {
             item.setSet(false);
         }
