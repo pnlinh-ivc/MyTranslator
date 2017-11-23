@@ -22,6 +22,7 @@
 
 package com.ndanh.mytranslator.dagger;
 
+import com.ndanh.mytranslator.app.TranslateApplication;
 import com.ndanh.mytranslator.screen.camera.CameraActivity;
 import com.ndanh.mytranslator.screen.camera.CameraPresenterImpl;
 import com.ndanh.mytranslator.screen.history.HistoryActivity;
@@ -40,6 +41,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, PresenterModule.class, NetworkModule.class, DatabaseModule.class, RecognizeModule.class})
 public interface AppComponent {
+
+    void inject(TranslateApplication application);
     void inject(CameraActivity target);
     void inject(HistoryActivity target);
     void inject(TextActivity target);
@@ -51,4 +54,5 @@ public interface AppComponent {
     void inject(HistoryPresenterImpl target);
     void inject(TextTranslatorPresenterImpl target);
     void inject(VoiceTranslatorPresenterImpl target);
+
 }

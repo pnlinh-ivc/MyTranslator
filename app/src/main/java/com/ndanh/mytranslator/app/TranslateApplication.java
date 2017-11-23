@@ -23,18 +23,30 @@
 package com.ndanh.mytranslator.app;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.facebook.stetho.Stetho;
 import com.ndanh.mytranslator.dagger.AppComponent;
 import com.ndanh.mytranslator.dagger.AppModule;
 import com.ndanh.mytranslator.dagger.DaggerAppComponent;
+import com.ndanh.mytranslator.model.Language;
+import com.ndanh.mytranslator.screen.settings.SettingActivity;
+import com.ndanh.mytranslator.util.LocaleHelper;
 
 import org.opencv.android.OpenCVLoader;
+
+import javax.inject.Inject;
+
+import static com.ndanh.mytranslator.screen.settings.SettingActivity.PREF_DISPLAY_LANG;
 
 
 public class TranslateApplication extends Application {
 
+    @Inject
+    SharedPreferences mPreferences;
     private AppComponent appComponent;
+    private Language language;
 
     public AppComponent getAppComponent() {
         return appComponent;
@@ -56,6 +68,10 @@ public class TranslateApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appComponent = initDagger(this);
+        Stetho.initializeWithDefaults(this);
+        appComponent.inject(this);
+        language = Language.fromShort(mPreferences.getString(PREF_DISPLAY_LANG, "eng"));
+        LocaleHelper.setLocale(this, language.getPhone());
     }
 
     protected AppComponent initDagger(TranslateApplication application) {

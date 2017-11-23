@@ -6,14 +6,14 @@
     <string name="nav_history">Lịch sử</string>
     <string name="nav_help">Trợ giúp</string>
     <string name="nav_about">Giới thiệu</string>
-    <string name="start_typing">Start typing...</string>
+    <string name="start_typing">Nhập để dịch …</string>
 
     <string name="setting_clearhistory_action">Xóa lịch sử</string>
-    <string name="setting_camera_action">Camera</string>
+    <string name="setting_camera_action">Máy ảnh</string>
     <string name="setting_keyboard_action">Bàn phím</string>
-    <string name="setting_voice_action">Voice</string>
+    <string name="setting_voice_action">Giọng nói</string>
     <string name="setting_startmode_title">Chế độ bắt đầu</string>
-    <string name="setting_header">Settings</string>
+    <string name="setting_header">Cài đặt</string>
     <string name="voice_error_audio">Audio recording error</string>
     <string name="voice_error_client">Client side error</string>
     <string name="voice_error_insufficient_permissions">Insufficient permissions</string>
@@ -25,16 +25,20 @@
     <string name="voice_error_speech_timeout">No speech input</string>
     <string name="voice_error_default">Didn\'t understand, please try again.</string>
     <string name="dialog_confirm_title">Xác nhận</string>
-    <string name="dialog_action_accept_title">Yes</string>
-    <string name="dialog_action_dimiss_title">No</string>
+    <string name="dialog_action_accept_title">Đúng</string>
+    <string name="dialog_action_dimiss_title">Không</string>
     <string name="dialog_alert_title">Alert</string>
     <string name="dialog_action_ok_title">OK</string>
     <string name="setting_message_confirm_delete_history">Do you want delete history ?</string>
     <string name="history_message_confirm_delete_history">Do you want delete these records ?</string>
-    <string name="title_confirm_change_setting_mode">Do you want change start screen?</string>
+    <string name="title_confirm_change_setting_mode">Bạn có muốn thay đổi chế độ bắt đầu?</string>
     <string name="text_display">Hiển thị</string>
-    <string name="text_translate">dịch</string>
+    <string name="text_translate">Dịch</string>
     <string name="text_display_language">Ngôn ngữ hiển thị</string>
     <string name="text_start_mode">Chế độ bắt đầu</string>
+    <string name="title_chose_language">Thay đổi ngôn ngữ</string>
+
+    <string name="action_ok">Đúng</string>
+    <string name="action_cancel">Đóng</string>
 
 </resources>

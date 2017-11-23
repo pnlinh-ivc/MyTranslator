@@ -15,28 +15,31 @@ import java.util.List;
  */
 
 public enum Language {
-    ENGLISH("English", "eng", "en_US", R.drawable.ic_flag_usa),
-    JAPANESE("Japanese", "jpn", "ja_JP", R.drawable.ic_flag_japan),
-    VIETNAMESE("Vietnamese", "vie", "vi_VN", R.drawable.ic_flag_vietnam);
+    ENGLISH("English", "en", "eng", "en_US", R.drawable.ic_flag_usa),
+    JAPANESE("日本語", "jp", "jpn", "ja_JP", R.drawable.ic_flag_japan),
+    VIETNAMESE("Tiếng Việt", "vi", "vie", "vi_VN", R.drawable.ic_flag_vietnam);
 
+    String phone;
     String normalName;
     String shortName;
     String locateName;
     int resId;
 
-    Language(String normalName, String shortName, String locateName, int resId) {
+    Language(String normalName, String phone, String shortName, String locateName, int resId) {
         this.normalName = normalName;
+        this.phone = phone;
         this.shortName = shortName;
         this.locateName = locateName;
         this.resId = resId;
     }
 
-    public int getResId() {
-        return resId;
-    }
 
     public String getNormalName() {
         return normalName;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public String getShortName() {
@@ -45,6 +48,10 @@ public enum Language {
 
     public String getLocateName() {
         return locateName;
+    }
+
+    public int getResId() {
+        return resId;
     }
 
     public static List<Language> getAll() {

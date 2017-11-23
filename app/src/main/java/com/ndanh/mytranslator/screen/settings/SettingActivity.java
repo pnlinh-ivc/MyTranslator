@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +23,7 @@ import com.ndanh.mytranslator.screen.settings.view.ChoseLanguageDialog;
 import com.ndanh.mytranslator.screen.settings.view.ChoseLanguageDialog.Callback;
 import com.ndanh.mytranslator.screen.settings.view.CustomDialog;
 import com.ndanh.mytranslator.util.DialogHelper;
+import com.ndanh.mytranslator.util.LocaleHelper;
 import com.ndanh.mytranslator.util.SimpleSQLiteOpenHelper;
 
 import java.util.ArrayList;
@@ -36,10 +37,11 @@ import butterknife.OnClick;
 
 public class SettingActivity extends PermissionActivity {
     private static final String TAG = SettingActivity.class.getSimpleName();
-    private static final String PREF_DISPLAY_LANG = "display_lang";
-    private static final String PREF_TRANSLATE_LANG = "translate_lang";
+    public static final String PREF_DISPLAY_LANG = "display_lang";
+    public static final String PREF_TRANSLATE_LANG = "translate_lang";
     @Inject
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor mEditor;
     @BindView(R.id.lst_settings)
     ListView lstSetting;
     @BindView(R.id.iv_flag_display)
@@ -71,7 +73,7 @@ public class SettingActivity extends PermissionActivity {
 
     private void initData() {
         mDisplayLang = Language.fromShort(sharedPreferences.getString(PREF_DISPLAY_LANG, "eng"));
-        mTranslateLang = Language.fromShort(sharedPreferences.getString(PREF_DISPLAY_LANG, "eng"));
+        mTranslateLang = Language.fromShort(sharedPreferences.getString(PREF_TRANSLATE_LANG, "eng"));
         ivFlagDisplay.setImageResource(mDisplayLang.getResId());
         ivFlagTranslate.setImageResource(mTranslateLang.getResId());
 
@@ -132,27 +134,58 @@ public class SettingActivity extends PermissionActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.ll_language_display, R.id.ll_language_translate})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ll_language_display:
+//    CustomDialog customDialog = new CustomDialog(this, R.style.AppCompatAlertDialogStyle);
+//    customDialog.show();
 
-                // ChoseLanguageDialog.getInstance(mDisplayLang).show(getSupportFragmentManager(), "");
-                CustomDialog customDialog = new CustomDialog(this, R.style.AppCompatAlertDialogStyle);
-
-                customDialog.show();
-                break;
-            case R.id.ll_language_translate:
-                if (mTranslateCallback == null)
-                    mTranslateCallback = new Callback() {
-                        @Override
-                        public void onChange(Language language) {
-                            Log.e(TAG, String.format("onChange: %s", language.toString()));
-                        }
-                    };
-                ChoseLanguageDialog.getInstance(mTranslateLang, mTranslateCallback
-                ).show(getSupportFragmentManager(), "");
-                break;
-        }
+    @OnClick(R.id.ll_language_display)
+    public void onChangeDisplayClicked() {
+        if (mDisplayCallback == null)
+            mDisplayCallback = new Callback() {
+                @Override
+                public void onChange(Language language) {
+                    if (mDisplayLang != language) {
+                        mDisplayLang = language;
+                        if (mEditor == null)
+                            mEditor = sharedPreferences.edit();
+                        mEditor.putString(PREF_DISPLAY_LANG, mDisplayLang.getShortName());
+                        mEditor.apply();
+                        ivFlagDisplay.setImageResource(mDisplayLang.getResId());
+                        LocaleHelper.setLocale(SettingActivity.this, language.getPhone());
+                        restartActivity();
+                    }
+                }
+            };
+        ChoseLanguageDialog.getInstance(mDisplayLang, mDisplayCallback)
+                .show(getSupportFragmentManager(), "");
     }
+
+    private void restartActivity() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recreate();
+            }
+        }, 300);
+    }
+
+    @OnClick(R.id.ll_language_translate)
+    public void onChangeTranslateClicked() {
+        if (mTranslateCallback == null)
+            mTranslateCallback = new Callback() {
+                @Override
+                public void onChange(Language language) {
+                    if (mTranslateLang != language) {
+                        mTranslateLang = language;
+                        if (mEditor == null)
+                            mEditor = sharedPreferences.edit();
+                        mEditor.putString(PREF_TRANSLATE_LANG, mTranslateLang.getShortName());
+                        mEditor.apply();
+                        ivFlagTranslate.setImageResource(mTranslateLang.getResId());
+                    }
+                }
+            };
+        ChoseLanguageDialog.getInstance(mTranslateLang, mTranslateCallback)
+                .show(getSupportFragmentManager(), "");
+    }
+
 }

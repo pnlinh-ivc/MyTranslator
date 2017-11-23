@@ -105,14 +105,14 @@
                 android:textColor="#000000"/>
 
             <LinearLayout
+                android:background="@drawable/bg_setting_item"
                 android:id="@+id/ll_language_display"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:layout_gravity="center"
                     android:layout_width="@dimen/normal_icon_width"
                     android:layout_height="@dimen/normal_icon_height"
                     android:padding="@dimen/increase_area_clickable"
@@ -129,13 +129,11 @@
                     android:textSize="16sp"/>
 
                 <ImageView
+                    android:layout_gravity="center"
                     android:id="@+id/iv_flag_display"
                     android:layout_width="@dimen/normal_icon_width"
                     android:layout_height="@dimen/normal_icon_height"
-                    android:padding="@dimen/increase_area_clickable"
-                    android:src="@drawable/checked"
-                    android:tint="@color/asbestos"
-                    android:visibility="gone"/>
+                    android:padding="@dimen/increase_area_clickable"/>
             </LinearLayout>
 
             <View
@@ -146,10 +144,11 @@
                 android:background="@color/colorDivider"/>
 
             <LinearLayout
+                android:background="@drawable/bg_setting_item"
+                android:gravity="center_vertical"
                 android:id="@+id/ll_language_translate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_height="56dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -172,10 +171,7 @@
                     android:id="@+id/iv_flag_translate"
                     android:layout_width="@dimen/normal_icon_width"
                     android:layout_height="@dimen/normal_icon_height"
-                    android:padding="@dimen/increase_area_clickable"
-                    android:src="@drawable/checked"
-                    android:tint="@color/asbestos"
-                    android:visibility="gone"/>
+                    android:padding="@dimen/increase_area_clickable"/>
             </LinearLayout>
 
 
